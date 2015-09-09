@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="650.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <GridPane layoutX="7.0" layoutY="5.0" prefHeight="346.0" prefWidth="584.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="5.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="180.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="454.0" minWidth="10.0" prefWidth="454.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="ФИО полностью" />
+            <Label text="Место_ дата рождения" GridPane.rowIndex="1" />
+            <Label text="Серия паспорта" GridPane.rowIndex="2" />
+            <Label text="Номер паспорта" GridPane.rowIndex="3" />
+            <Label text="Кем выдан паспорт, дата" GridPane.rowIndex="4" />
+            <Label text="Зарегистрирован и проживает" GridPane.rowIndex="5" />
+            <Label text="Сумма долга" GridPane.rowIndex="6" />
+            <Label text="Номер договора" GridPane.rowIndex="7" />
+            <Label text="Дата договора" GridPane.rowIndex="8" />
+            <Label text="Дата погашения" GridPane.rowIndex="9" />
+            <Label text="Кредит выдан на сумму" GridPane.rowIndex="10" />
+            <TextField promptText="Иванов Иван Иванович" GridPane.columnIndex="1" />
+            <TextField promptText="с.Уйское Уйского района Челябинской области 14.09.1986 г.р." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField promptText="75 05" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField promptText="906810" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField promptText="04.10.2006 Уйским РОВД Челябинской области" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField promptText="Челябинская обл., с.Уйское, ул.Советская,д. 42" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField promptText="49627,23 рублей (сорок девять тысяч шестьсот двадцать семь руб, 23 коп)" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField promptText="НЧ00092-200/2014" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField promptText="дд.мм.гггг" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField promptText="дд.мм.гггг" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField promptText="24000,00 рублей (двадцать четыре тысячи рублей, 00 коп)" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+         </children>
+      </GridPane>
+      <HBox layoutX="491.0" layoutY="361.0" spacing="12.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+         <children>
+            <Button layoutX="415.0" layoutY="361.0" mnemonicParsing="false" text="Готово" />
+            <Button layoutX="495.0" layoutY="361.0" mnemonicParsing="false" text="Отменить" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
