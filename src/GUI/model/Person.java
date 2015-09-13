@@ -8,9 +8,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Person {
-    private final StringProperty firstName;
-    private final StringProperty lastName;
-    private final ObjectProperty<LocalDate> birthInfo;
+//    private final StringProperty firstName;
+//    private final StringProperty lastName;
+    private final StringProperty fullName;
+    private final StringProperty birthInfo;
     private final StringProperty passpSerial;
     private final StringProperty passpNumber;
     private final StringProperty passpIssued;
@@ -22,14 +23,15 @@ public class Person {
     private final StringProperty creditSum;
 
     public Person() {
-        this(null, null);
+        this(null);
     }
 
-    public Person(String firstName, String lastName) {
-        this.firstName = new SimpleStringProperty(firstName);
-        this.lastName = new SimpleStringProperty(lastName);
+    public Person(String fullName) {
+//        this.firstName = new SimpleStringProperty(firstName);
+//        this.lastName = new SimpleStringProperty(lastName);
+        this.fullName = new SimpleStringProperty(fullName);
 
-        this.birthInfo = new SimpleObjectProperty<LocalDate>(LocalDate.of(1990, 1, 1));
+        this.birthInfo = new SimpleStringProperty("сcccc. Уйское, Челяб. обл., 14.09.1986 г.р.");
         this.passpSerial = new SimpleStringProperty("75 04");
         this.passpNumber = new SimpleStringProperty("12345678");
         this.passpIssued = new SimpleStringProperty("Орджоникидзевским РОВД, тра-ла-ла, тро-ло-ло 02.02.2000");
@@ -41,42 +43,55 @@ public class Person {
         this.creditSum = new SimpleStringProperty("24000,00 руб (двадцать четыре тысячи, 00 коп)");
     }
 
-    //firstName
-    public String getFirstName() {
-        return firstName.get();
+//    //firstName
+//    public String getFirstName() {
+//        return firstName.get();
+//    }
+//
+//    public void setFirstName(String firstName) {
+//        this.firstName.set(firstName);
+//    }
+//
+//    public StringProperty firstNameProperty() {
+//        return firstName;
+//    }
+//
+//    //lastName
+//    public String getLastName() {
+//        return lastName.get();
+//    }
+//
+//    public void setLastName(String lastName) {
+//        this.lastName.set(lastName);
+//    }
+//
+//    public StringProperty lastNameProperty() {
+//        return lastName;
+//    }
+
+    //fullName
+    public String getFullName() {
+        return fullName.get();
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName.set(firstName);
+    public void setFullName(String fullName) {
+        this.fullName.set(fullName);
     }
 
-    public StringProperty firstNameProperty() {
-        return firstName;
-    }
-
-    //lastName
-    public String getLastName() {
-        return lastName.get();
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName.set(lastName);
-    }
-
-    public StringProperty lastNameProperty() {
-        return lastName;
+    public StringProperty fullNameProperty() {
+        return fullName;
     }
 
     //birthInfo
-    public LocalDate getBirthInfo() {
+    public String getBirthInfo() {
         return birthInfo.get();
     }
 
-    public void setBirthInfo(LocalDate birthday) {
+    public void setBirthInfo(String birthday) {
         this.birthInfo.set(birthday);
     }
 
-    public ObjectProperty<LocalDate> birthInfoProperty() {
+    public StringProperty birthInfoProperty() {
         return birthInfo;
     }
 
@@ -189,7 +204,7 @@ public class Person {
         return creditSum.get();
     }
 
-    public void setСreditSum(String creditSum) {
+    public void setCreditSum(String creditSum) {
         this.creditSum.set(creditSum);
     }
 

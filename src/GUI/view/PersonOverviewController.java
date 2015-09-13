@@ -13,9 +13,7 @@ public class PersonOverviewController {
     @FXML
     private TableView<Person> personTable;
     @FXML
-    private TableColumn<Person, String> firstNameColumn;
-    @FXML
-    private TableColumn<Person, String> lastNameColumn;
+    private TableColumn<Person, String> fullNameColumn;
 
     @FXML
     private Label fullNameLabel;
@@ -57,10 +55,8 @@ public class PersonOverviewController {
     @FXML
     private void initialize() {
         // Initialize the person table with the two columns.
-        firstNameColumn.setCellValueFactory(
-                cellData -> cellData.getValue().firstNameProperty());
-        lastNameColumn.setCellValueFactory(
-                cellData -> cellData.getValue().lastNameProperty());
+        fullNameColumn.setCellValueFactory(
+                cellData -> cellData.getValue().fullNameProperty());
 
         // Clear person details.
         showPersonDetails(null);
@@ -91,8 +87,8 @@ public class PersonOverviewController {
     private void showPersonDetails(Person person) {
         if (person != null) {
             // Fill the labels with info from the person object.
-            fullNameLabel.setText(person.getFirstName());
-            birthInfoLabel.setText(DateUtil.format(person.getBirthInfo()));
+            fullNameLabel.setText(person.getFullName());
+            birthInfoLabel.setText(person.getBirthInfo());
             passpSerialLabel.setText(person.getPasspSerial());
             passpNumberLabel.setText(person.getPasspNumber());
             passpIssuedLabel.setText(person.getPasspIssued());
@@ -137,6 +133,42 @@ public class PersonOverviewController {
                     .masthead("Выберите должника в таблице")
                     .message("Чтобы удалить кого-то - нужно сначала его выбрать в таблице.")
                     .showWarning();
+        }
+    }
+
+    /**
+     * Called when user clicks the NEW button.
+     * Opens dialog to edit details for a new person
+     */
+    @FXML
+    private void handleNewPerson() {
+        Person tempPerson = new Person();
+        boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
+        if (okClicked) {
+            mainApp.getPersonData().add(tempPerson);
+        }
+    }
+
+    /**
+     * Called when user clicks the EDIT button.
+     * Opens dialog to edit details fot the selected person
+     */
+
+    @FXML
+    private void handleEditPerson() {
+        Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
+            if (okClicked) {
+                showPersonDetails(selectedPerson);
+            } else {
+                //Nothing selected
+                Dialogs.create()
+                        .title("Ничего не выбрано")
+                        .masthead("Никто не выбран")
+                        .message("Выберите уголовника в таблице")
+                        .showWarning();
+            }
         }
     }
 }

@@ -2,6 +2,7 @@ package GUI.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import org.controlsfx.dialog.Dialogs;
@@ -17,17 +18,27 @@ import GUI.util.DateUtil;
 public class PersonEditDialogController {
 
     @FXML
-    private TextField firstNameField;
+    private TextField fullNameField;
     @FXML
-    private TextField lastNameField;
+    private TextField birthInfoField;
     @FXML
-    private TextField streetField;
+    private TextField passpSerialField;
     @FXML
-    private TextField postalCodeField;
+    private TextField passpNumberField;
     @FXML
-    private TextField cityField;
+    private TextField passpIssuedField;
     @FXML
-    private TextField birthdayField;
+    private TextField registeredAndLiveField;
+    @FXML
+    private TextField amountDueField;
+    @FXML
+    private TextField contractNumberField;
+    @FXML
+    private TextField contractDateField;
+    @FXML
+    private TextField maturityDateField;
+    @FXML
+    private TextField creditSumField;
 
 
     private Stage dialogStage;
@@ -49,6 +60,8 @@ public class PersonEditDialogController {
      */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
+        this.dialogStage.setResizable(false);
+        this.dialogStage.getIcons().add(new Image("file:src/resources/images/court2.png"));
     }
 
     /**
@@ -59,13 +72,17 @@ public class PersonEditDialogController {
     public void setPerson(Person person) {
         this.person = person;
 
-        firstNameField.setText(person.getFirstName());
-        lastNameField.setText(person.getLastName());
-        streetField.setText(person.getStreet());
-        postalCodeField.setText(Integer.toString(person.getPostalCode()));
-        cityField.setText(person.getCity());
-        birthdayField.setText(DateUtil.format(person.getBirthday()));
-        birthdayField.setPromptText("dd.mm.yyyy");
+        fullNameField.setText(person.getFullName());
+        birthInfoField.setText(person.getBirthInfo());
+        passpSerialField.setText(person.getPasspSerial());
+        passpNumberField.setText(person.getPasspNumber());
+        passpIssuedField.setText(person.getPasspIssued());
+        registeredAndLiveField.setText(person.getRegisteredAndLive());
+        amountDueField.setText(person.getAmountDue());
+        contractNumberField.setText(person.getContractNumber());
+        contractDateField.setText(DateUtil.format(person.getContractDate()));
+        maturityDateField.setText(DateUtil.format(person.getMaturityDate()));
+        creditSumField.setText(person.getСreditSum());
     }
 
     /**
@@ -83,12 +100,17 @@ public class PersonEditDialogController {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
-            person.setFirstName(firstNameField.getText());
-            person.setLastName(lastNameField.getText());
-            person.setStreet(streetField.getText());
-            person.setPostalCode(Integer.parseInt(postalCodeField.getText()));
-            person.setCity(cityField.getText());
-            person.setBirthday(DateUtil.parse(birthdayField.getText()));
+            person.setFullName(fullNameField.getText());
+            person.setBirthInfo(birthInfoField.getText());
+            person.setPasspSerial(passpSerialField.getText());
+            person.setPasspNumber(passpNumberField.getText());
+            person.setPasspIssued(passpIssuedField.getText());
+            person.setRegisteredAndLive(registeredAndLiveField.getText());
+            person.setAmountDue(amountDueField.getText());
+            person.setContractNumber(contractNumberField.getText());
+            person.setContractDate(DateUtil.parse(contractDateField.getText()));
+            person.setMaturityDate(DateUtil.parse(maturityDateField.getText()));
+            person.setCreditSum(creditSumField.getText());
 
             okClicked = true;
             dialogStage.close();
@@ -108,40 +130,50 @@ public class PersonEditDialogController {
      *
      * @return true if the input is valid
      */
+
     private boolean isInputValid() {
         String errorMessage = "";
 
-        if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
-            errorMessage += "No valid first name!\n";
+        if (fullNameField.getText() == null || fullNameField.getText().length() == 0) {
+            errorMessage += "Введите ФИО!\n";
         }
-        if (lastNameField.getText() == null || lastNameField.getText().length() == 0) {
-            errorMessage += "No valid last name!\n";
+        if (birthInfoField.getText() == null || birthInfoField.getText().length() == 0) {
+            errorMessage += "Поле не может быть пустым млять!\n";
         }
-        if (streetField.getText() == null || streetField.getText().length() == 0) {
-            errorMessage += "No valid street!\n";
+        if (passpSerialField.getText() == null || passpSerialField.getText().length() == 0) {
+            errorMessage += "Поле не может быть пустым млять!\n";
         }
-
-        if (postalCodeField.getText() == null || postalCodeField.getText().length() == 0) {
-            errorMessage += "No valid postal code!\n";
+        if (passpNumberField.getText() == null || passpNumberField.getText().length() == 0) {
+            errorMessage += "Поле не может быть пустым млять!\n";
+        }
+        if (passpIssuedField.getText() == null || passpIssuedField.getText().length() == 0) {
+            errorMessage += "Поле не может быть пустым млять!\n";
+        }
+        if (registeredAndLiveField.getText() == null || registeredAndLiveField.getText().length() == 0) {
+            errorMessage += "Поле не может быть пустым млять!\n";
+        }
+        if (amountDueField.getText() == null || amountDueField.getText().length() == 0) {
+            errorMessage += "Поле не может быть пустым млять!\n";
+        }
+        if (contractNumberField.getText() == null || contractNumberField.getText().length() == 0) {
+            errorMessage += "Поле не может быть пустым млять!\n";
+        }
+        if (contractDateField.getText() == null || contractDateField.getText().length() == 0) {
+            errorMessage += "Поле не может быть пустым млять!\n";
         } else {
-            // try to parse the postal code into an int.
-            try {
-                Integer.parseInt(postalCodeField.getText());
-            } catch (NumberFormatException e) {
-                errorMessage += "No valid postal code (must be an integer)!\n";
+            if (!DateUtil.validDate(contractDateField.getText())) {
+                errorMessage += "Формат должен быть: дд.мм.гггг!\n";
             }
         }
-
-        if (cityField.getText() == null || cityField.getText().length() == 0) {
-            errorMessage += "No valid city!\n";
-        }
-
-        if (birthdayField.getText() == null || birthdayField.getText().length() == 0) {
-            errorMessage += "No valid birthday!\n";
+        if (maturityDateField.getText() == null || maturityDateField.getText().length() == 0) {
+            errorMessage += "Поле не может быть пустым млять!\n";
         } else {
-            if (!DateUtil.validDate(birthdayField.getText())) {
-                errorMessage += "No valid birthday. Use the format dd.mm.yyyy!\n";
+            if (!DateUtil.validDate(maturityDateField.getText())) {
+                errorMessage += "Формат должен быть: дд.мм.гггг!\n";
             }
+        }
+        if (creditSumField.getText() == null || creditSumField.getText().length() == 0) {
+            errorMessage += "Поле не может быть пустым млять!\n";
         }
 
         if (errorMessage.length() == 0) {
@@ -149,8 +181,8 @@ public class PersonEditDialogController {
         } else {
             // Show the error message.
             Dialogs.create()
-                    .title("Invalid Fields")
-                    .masthead("Please correct invalid fields")
+                    .title("Корявое заполнение")
+                    .masthead("Нужно заполнить заново")
                     .message(errorMessage)
                     .showError();
             return false;
